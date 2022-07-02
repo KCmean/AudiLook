@@ -1,5 +1,14 @@
-class Music():
+class Music:
     def __init__(self,listofmusicsamples):
-        pass
+        self.availablemusic = listofmusicsamples
 
-    def playmusicsamples
+    def displaymMsicSamples(self):
+        print("SAMPLE AUDIOS WE HAVE ARE:")
+        print("=========================")
+        for mu in self.availablemusic():
+            print(mu)
+    
+    def playMusicSample(self):
+        
+
+
