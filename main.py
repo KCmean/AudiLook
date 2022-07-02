@@ -1,3 +1,5 @@
+from playsound import playsound
+
 class Music:
     def __init__(self,listofmusicsamples):
         self.availablemusic = listofmusicsamples
@@ -9,6 +11,16 @@ class Music:
             print(mu)
     
     def playMusicSample(self):
-        
+        print("Enter which music sample you want to play from -->")
+        self.sample = input()
+        if self.sample in self.availablemusic:
+            print("playing your sample:")
+            playsound(self.sample)
+        else:
+            print("!!!PLEASE ENTER A CORRECT SAMPLE NAME!!!")
+            
+
+
+
 
 
