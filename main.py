@@ -18,9 +18,6 @@ class Music:
             playsound(self.sample)
         else:
             print("!!!PLEASE ENTER A CORRECT SAMPLE NAME!!!")
-            
-
-
 
 
 
