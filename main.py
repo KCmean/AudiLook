@@ -1,14 +1,20 @@
+from pydub import AudioSegment
 from playsound import playsound
+
 
 class Music:
     def __init__(self,listofmusicsamples):
-        self.availablemusic = listofmusicsamples
-
+        self.availablemusic=[]
+        for i in listofmusicsamples:
+           self.availablemusic.append(i)
+        print(self.availablemusic)
     def displaymMsicSamples(self):
-        print("SAMPLE AUDIOS WE HAVE ARE:")
-        print("=========================")
-        for mu in self.availablemusic():
-            print(mu)
+        print("\nSAMPLE AUDIOS WE HAVE ARE:")
+        print("\n=========================")
+        i=1
+        for a in self.availablemusic:
+            print(f"{i}) {a}")
+            i+=1
     
     def playMusicSample(self):
         print("Enter which music sample you want to play from -->")
@@ -18,6 +24,34 @@ class Music:
             playsound(self.sample)
         else:
             print("!!!PLEASE ENTER A CORRECT SAMPLE NAME!!!")
+    
+
+class musicEdit:
+    def __init__(self, start, end, sound ,slices):
+        self.start= start
+        self.end  = end
+        self.slices = slices
+        self.sound =sound
+    def cut(self):
+        slice = self.sound[self.start:self.end]
+        return slice
+
+    def merge(self):
+        merge =0
+        for i in self.slices:
+            merge += i
+        return merge
+slices = []
+            
+start_min, start_sec=  map(int , input("\n Enter the starting point as (1(mins) 30(secs)) : ").split(' '))
+end_min, end_sec = map(int, input("\n Enter the ending point as (1(mins) 30(secs)) : ").split(' ') )
+start = start_min*60000 + start_sec*1000
+end = end_min*60000 + end_sec*1000
+sound= AudioSegment.from_mp3("1.mp3")
+slice = musicEdit(start, end, sound, slices)
+slice.cut(start, end , sound)
+slices.append(slice)
+slice.export("3.mp3" , format = "mp3")
 
 
 
