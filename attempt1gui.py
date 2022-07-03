@@ -1,16 +1,20 @@
 from tkinter import *
 import tkinter.ttk as ttk
 import pygame
+from PIL import ImageTk, Image
 
 app = Tk()
 app.title(' Audio Cutter and Merger ')
 app.geometry('500x400')
 
+img = Image.open('play.png') 
+img = img.resize((50,50))
+
 pygame.mixer.init()
 
 def play():                                     #play 
     song = playlist.get(ACTIVE)
-    song = f'Music Cutter\\{song}.mp3'
+    song = f'{song}.mp3'
     pygame.mixer.music.load(song)
     pygame.mixer.music.play(loops=0)
     global paused
@@ -37,18 +41,21 @@ def scale(x):                                                   #slider
 
 
    
-playlist= Listbox(app , bg= "blue", fg = "green" , selectbackground= "gray", selectforeground= "red" , width =60 )
+playlist= Listbox(app , bg= "black", fg = "green" , selectbackground= "gray", selectforeground= "red" , width =60 )
 playlist.pack(pady =30)
-music= "Music Cutter\\1.mp3"
-music = music.replace("Music Cutter\\", "")
+music= "1.mp3"
+# music = music.replace("", "")
 music = music.replace(".mp3", "")
 playlist.insert(END, music)
 
 ctrls_frame=Frame(app)
 ctrls_frame.pack()
 
-play_btt = Button(ctrls_frame, text = "play", borderwidth = 10, command = play )
-pause_btt =Button(ctrls_frame, text = "pause", borderwidth = 10, command = lambda : pause(paused))
+play_img= PhotoImage(file= "play.png")
+pause_img= PhotoImage(file = "pause.png")
+
+play_btt = Button(ctrls_frame, image= play_img, borderwidth = 0, command = play )
+pause_btt =Button(ctrls_frame, image = pause_img , borderwidth = 0, command = lambda : pause(paused))
 back_btt =Button(ctrls_frame, text = "back", borderwidth = 10  )
 next_btt =Button(ctrls_frame, text = "next", borderwidth = 10 )
  
