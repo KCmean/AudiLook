@@ -23,7 +23,7 @@ def play():                                     #play
 global paused
 paused = False   
 
-def pause(is_paused):                          #pause
+def pause(is_paused):                          #pause/unpause
     global paused
     paused = is_paused
     if paused:
