@@ -1,14 +1,13 @@
 from tkinter import *
 import tkinter.ttk as ttk
 import pygame
-from PIL import ImageTk, Image
+import time
+from mutagen.mp3 import MP3
 
 app = Tk()
 app.title(' Audio Cutter and Merger ')
 app.geometry('500x400')
 
-img = Image.open('play.png') 
-img = img.resize((50,50))
 
 pygame.mixer.init()
 
@@ -19,6 +18,8 @@ def play():                                     #play
     pygame.mixer.music.play(loops=0)
     global paused
     paused = False
+    play_time()
+    
     
 global paused
 paused = False   
@@ -32,12 +33,31 @@ def pause(is_paused):                          #pause/unpause
     else:
         pygame.mixer.music.pause()
         paused=True
+# def elapsed_time():
+#     song1 = playlist.curselection()
+#     song = playlist.get(song1)
+#     song= f"{song}.mp3"
+#     mut = MP3(song)
+#     l_song= mut.info.length
+
+#     song_length = time.strftime('%H:%M:%S', time.gmtime(l_song))
+
+def play_time():
+    song = playlist.get(ACTIVE)
+    song= f"{song}.mp3"
+    mut = MP3(song)
+    l_song= mut.info.length
+
+    song_length = time.strftime('%H:%M:%S', time.gmtime(l_song))
+
+    Curr_time = pygame.mixer.music.get_pos()/1000
+    mod_curr_time = time.strftime(f'%H:%M:%S', time.gmtime(Curr_time))
+    my_label.config(text = f"{mod_curr_time} / {song_length}")
+    my_label.after(1000, play_time)
 
 
-
-
-def scale(x):                                                   #slider
-    slider_label.config(text= int(position_slider.get()))
+# def scale(x):                                                   #slider
+#     slider_label.config(text= int(position_slider.get()))
 
 
    
@@ -47,6 +67,11 @@ music= "1.mp3"
 # music = music.replace("", "")
 music = music.replace(".mp3", "")
 playlist.insert(END, music)
+
+position_slider= ttk.Scale(app, from_= 0, to=100, value=0, orient=HORIZONTAL, length = 360)
+position_slider.pack(pady=20)
+my_label = Label(app, text = '', bd=1, anchor= E)
+my_label.pack(pady =5 )
 
 ctrls_frame=Frame(app)
 ctrls_frame.pack()
@@ -64,12 +89,5 @@ play_btt.grid(row =0, column =2, padx=10)
 pause_btt.grid(row =0, column =3, padx=10) 
 next_btt.grid(row =0, column =4, padx=10) 
 
-position_slider= ttk.Scale(app, from_= 0, to=100, value=0, orient=HORIZONTAL, length = 360, command = scale)
-position_slider.pack(pady=20)
-
-start_pt = int(position_slider.get())
-
-slider_label= Label(app, text='0')
-slider_label.pack(pady=10)
 
 app.mainloop()
