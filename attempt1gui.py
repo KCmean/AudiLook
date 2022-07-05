@@ -58,34 +58,31 @@ pause_btt =Button(ctrls_frame, image = pause_img , borderwidth = 0, command = la
 play_btt.grid(row =0, column =2, padx=10) 
 pause_btt.grid(row =0, column =3, padx=10) 
 
-# startEntry=Entry(app, width= 25,)
-# startEntry.pack()
-# endEntry=Entry(app, width= 25)
-# endEntry.pack()
 
 
 
-# start_pt = position_slider.get()
-# end_pt = int(position_slider.get())
-
-horizontal_slider = Scale(app, from_= 0, to=100, orient=HORIZONTAL)                 #slide
+horizontal_slider = Scale(app, from_= 0, to=100, orient=HORIZONTAL)                 #slideer
 horizontal_slider.pack()
+horizontal_slide2r = Scale(app, from_= 100, to=0, orient=HORIZONTAL)                 
+horizontal_slide2r.pack()
 
 def slide():
     start_btt =  Label(app, text=f" Starting point :{horizontal_slider.get()}").pack()
     startIndex = horizontal_slider.get()
-
-# horizontal_slider_button = Button(app, text ="Confirm Audio point for editing",pady=20, command=slide).pack()
+    horizontal_slider['state'] = DISABLED
+def slide2():
+    end_btt =  Label(app, text=f" Ending point :{horizontal_slide2r.get()}").pack()
+    endIndex = horizontal_slide2r.get()
+    horizontal_slide2r['state'] = DISABLED
 
 start_btt =Button(ctrls_frame, text = "select starting text", borderwidth = 10, command=slide )
-end_btn =Button(ctrls_frame, text = "select ending point", borderwidth = 10 )
+
+end_btn =Button(ctrls_frame, text = "select ending point", borderwidth = 10, command = slide2 )
 
 end_btn.grid(row =1, column =4, padx=10) 
 start_btt.grid(row =1, column =1 ,padx=10) 
 
 
-# slider_label= Label(app, text='0')
-# slider_label.pack(pady=10)
 
 app.mainloop()
 app.update_idletasks()

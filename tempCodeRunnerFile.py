@@ -1,2 +1,1 @@
-
-# slider_label.pack(pady=10)
+end_btn.grid(row =1, column =4, padx=10) 
