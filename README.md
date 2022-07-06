@@ -1,6 +1,6 @@
 # Audio Player and Editor
 
-Desigined a simple Audio cutter in python
+Desigined a simple Audio editor in python
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the required libraries.
