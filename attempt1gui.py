@@ -35,6 +35,7 @@ def pause(is_paused):                          #pause/unpause
         pygame.mixer.music.pause()
         paused=True
 
+#Function for showing playtime of the Audi
 def play_time():
     song = playlist.get(ACTIVE)
     song= f"{song}.mp3"
