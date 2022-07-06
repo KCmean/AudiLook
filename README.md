@@ -59,7 +59,7 @@ Used tkinter to design the GUI of the app and to run various functions.
 
 
 ## Usage
-Sample code(demonstrating how to pause/unpause the audio
+Sample code(demonstrating how to pause/unpause the audio)
 ```python
 #pause/unpause
 global paused
@@ -92,5 +92,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-Thankyou
--
+<hr>
+##Thankyou
+
