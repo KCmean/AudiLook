@@ -1,3 +1,4 @@
+# Importing Modules
 from tkinter import *
 import tkinter.ttk as ttk
 import time
@@ -154,6 +155,7 @@ play_img= PhotoImage(file= "play.png")
 pause_img= PhotoImage(file = "pause.png")
 stop_img = PhotoImage(file='stop.png')
 
+# Creating Buttons
 play_btt = Button(ctrls_frame, image= play_img, borderwidth = 0, command = play )
 pause_btt =Button(ctrls_frame, image = pause_img , borderwidth = 0, command = lambda : pause(paused))
 stop_btt = Button(ctrls_frame, image= stop_img ,borderwidth=0, command=stop)
@@ -161,6 +163,7 @@ cutt_btt = Button(ctrls_frame , text="CUT/TRIM AUDIO", borderwidth=5 , command= 
 merge_btt = Button(ctrls_frame , text="CUT/TRIM AUDIO", borderwidth=5 , command= cutWindowOpen)
 
 
+# Placing Buttons
 play_btt.grid(row =0, column =1, padx=10) 
 pause_btt.grid(row =0, column =2, padx=10) 
 stop_btt.grid(row =0, column=3, padx= 30)

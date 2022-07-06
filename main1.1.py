@@ -5,12 +5,10 @@ def cut(Start, End, sound):
     slice = sound[Start:End]
     return slice
 
-def merge(*slices):
-    merge =0
-    for i in slices:
-        merge += i
+def merge(slice1,slice2):
+    merge = slice1+ slice2
     return merge
-slices = []
+slices = ["1.mp3", "2.mp3"]
 
 start_min, start_sec=  map(int , input("\n Enter the starting point as (1(mins) 30(secs)) : ").split(' '))
 end_min, end_sec = map(int, input("\n Enter the ending point as (1(mins) 30(secs)) : ").split(' ') )
