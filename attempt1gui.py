@@ -3,12 +3,16 @@ import tkinter.ttk as ttk
 import time
 from mutagen.mp3 import MP3
 import pygame
+from tkinter import filedialog
 
 app = Tk()
 app.title(' Audio Cutter and Merger ')
 app.geometry('700x600')
 
+headingText  =  Label(app , text="MUSIC EDITOR AND PLAYER" ,font="Times 30 bold",pady=50)
+headingText.pack()
 pygame.mixer.init()
+
 
 def play():                                     #play 
     song = playlist.get(ACTIVE)
@@ -32,7 +36,7 @@ def pause(is_paused):                          #pause/unpause
         pygame.mixer.music.pause()
         paused=True
 
-def play_time():
+def play_time():                               #time elapse
     song = playlist.get(ACTIVE)
     song= f"{song}.mp3"
     mut = MP3(song)
@@ -45,37 +49,34 @@ def play_time():
     my_label.config(text = f"{mod_curr_time} / {song_length}")
     my_label.after(1000, play_time)
 
-
-def slide():
-    start_btt =  Label(app, text=f" Starting point :{horizontal_slider.get()}").pack()
-    global startIndex
-    startIndex = horizontal_slider.get()
-    horizontal_slider['state'] = DISABLED
-def slide2():
-    end_btt =  Label(app, text=f" Ending point :{horizontal_slide2r.get()}").pack()
-    global endIndex
-    endIndex = horizontal_slide2r.get()
-    horizontal_slide2r['state'] = DISABLED
-
-def confirmwindow():
-    confirm_btt = Label(app , text = f"your start pt is :{startIndex} and end pt is : {endIndex} thus the lenght of your final output will be : {endIndex-startIndex}").pack()
+def add_song():                               #adding songs
+    song = filedialog.askopenfilename(initialdir="audio/" , title="Choose a somg" , filetypes=(("mp3 files" , "*.mp3"),))
+    print(song)
 
 
-
-playlist= Listbox(app , bg= "black", fg = "green" , selectbackground= "white", selectforeground= "red" , width =60 )
+playlist= Listbox(app , bg= "grey", fg = "green" , selectbackground= "white", selectforeground= "red" , width =60 )
 playlist.pack(pady =30)
-music= "1.mp3"
+music= ["1.mp3","2.mp3","3.mp3"]
 # music = music.replace("", "")
-music = music.replace(".mp3", "")
+# music = music.replace(".mp3", "")
 playlist.insert(END, music)
 
-horizontal_slider = Scale(app, from_= 0, to=100, orient=HORIZONTAL)              #slideer
-horizontal_slider.pack()
-horizontal_slide2r = Scale(app, from_= 100, to=0, orient=HORIZONTAL)                 
-horizontal_slide2r.pack()
+
+#cretaing list
+my_menu = Menu(app)
+app.config(menu=my_menu)
+
+#add song 
+addsong = Menu(my_menu)
+my_menu.add_cascade(label="Add Song" , menu=addsong)
+addsong.add_command(label="Add one song to playlist" , command=add_song)
+
+
+
 
 my_label = Label(app, text = '', bd=1, anchor= E)
 my_label.pack(pady =5 )
+
 
 
 ctrls_frame=Frame(app)
@@ -89,21 +90,6 @@ pause_btt =Button(ctrls_frame, image = pause_img , borderwidth = 0, command = la
 
 play_btt.grid(row =0, column =1, padx=10) 
 pause_btt.grid(row =0, column =3, padx=10) 
-
-startIndex = 0
-endIndex = 0
-
-start_btt =Button(ctrls_frame, text = "select starting text", borderwidth = 5, command= slide )
-
-end_btn =Button(ctrls_frame, text = "select ending point", borderwidth = 5, command = slide2 )
-
-
-end_btn.grid(row =1, column =3, padx=10) 
-start_btt.grid(row =1, column =1 ,padx=10) 
-
-
-confirm_btt = Button(ctrls_frame, borderwidth = 5 , text="confirm" , width=10 , command=confirmwindow)
-confirm_btt.grid(row=1 , column=2)
 
 
 
