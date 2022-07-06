@@ -33,6 +33,7 @@ def pause(is_paused):                          #pause/unpause
     else:
         pygame.mixer.music.pause()
         paused=True
+        
 # def elapsed_time():
 #     song1 = playlist.curselection()
 #     song = playlist.get(song1)
