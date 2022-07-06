@@ -1,13 +1,16 @@
+# Importing Modules
 from tkinter import *
 import tkinter.ttk as ttk
 import time
 from mutagen.mp3 import MP3
 import pygame
 
+# Explicitly initializing Tkinter interpreter and creating a root Window
 app = Tk()
 app.title(' Audio Cutter and Merger ')
 app.geometry('700x600')
 
+# Initialize mixer module of pygame
 pygame.mixer.init()
 
 def play():                                     #play 
@@ -45,7 +48,7 @@ def play_time():
     my_label.config(text = f"{mod_curr_time} / {song_length}")
     my_label.after(1000, play_time)
 
-
+# Slider Functions
 def slide():
     start_btt =  Label(app, text=f" Starting point :{horizontal_slider.get()}").pack()
     global startIndex
@@ -69,6 +72,7 @@ music= "1.mp3"
 music = music.replace(".mp3", "")
 playlist.insert(END, music)
 
+# Creating a sliders in TKinter using Scale()
 horizontal_slider = Scale(app, from_= 0, to=100, orient=HORIZONTAL)              #slideer
 horizontal_slider.pack()
 horizontal_slide2r = Scale(app, from_= 100, to=0, orient=HORIZONTAL)                 
@@ -81,12 +85,15 @@ my_label.pack(pady =5 )
 ctrls_frame=Frame(app)
 ctrls_frame.pack()
 
+# Returns Image object
 play_img= PhotoImage(file= "play.png")
 pause_img= PhotoImage(file = "pause.png")
 
+# Creating Buttons
 play_btt = Button(ctrls_frame, image= play_img, borderwidth = 0, command = play )
 pause_btt =Button(ctrls_frame, image = pause_img , borderwidth = 0, command = lambda : pause(paused))
 
+# Placing Buttons
 play_btt.grid(row =0, column =1, padx=10) 
 pause_btt.grid(row =0, column =3, padx=10) 
 
@@ -108,5 +115,5 @@ confirm_btt.grid(row=1 , column=2)
 
 
 
-app.mainloop()
-app.update_idletasks()
+app.mainloop()  #Makes an infinite loop to run the application
+app.update_idletasks()  #Udates processes which are not running or stable
