@@ -12,7 +12,7 @@ from pydub import AudioSegment
 
 #setting up
 app = Tk()
-app.title(' Audio Cutter and Merger ')
+app.title(' Audio Player ')
 app.geometry('900x600')
 
 #Heading text

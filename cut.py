@@ -11,7 +11,7 @@ from tkinter import messagebox
 pygame.mixer.init()
 
 cut = Tk()
-cut.title('Cut')
+cut.title('Audio Cutter')
 cut.geometry('900x600')
 
 def play():                                     #play 

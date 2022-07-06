@@ -9,7 +9,7 @@ from pydub import AudioSegment
 
 
 merge = Tk()
-merge.title("Merge")
+merge.title("Audio Merger")
 merge.geometry('900x600')
 
 def merge1(slice1, slice2):
