@@ -1,5 +1,7 @@
 from tkinter import *
 import tkinter.ttk as ttk
+import time
+from mutagen.mp3 import MP3
 import pygame
 
 app = Tk()
@@ -15,7 +17,8 @@ def play():                                     #play
     pygame.mixer.music.play(loops=0)
     global paused
     paused = False
-    
+    play_time()
+
 global paused
 paused = False   
 
@@ -28,6 +31,20 @@ def pause(is_paused):                          #pause/unpause
     else:
         pygame.mixer.music.pause()
         paused=True
+
+def play_time():
+    song = playlist.get(ACTIVE)
+    song= f"{song}.mp3"
+    mut = MP3(song)
+    l_song= mut.info.length
+
+    song_length = time.strftime('%H:%M:%S', time.gmtime(l_song))
+
+    Curr_time = pygame.mixer.music.get_pos()/1000
+    mod_curr_time = time.strftime(f'%H:%M:%S', time.gmtime(Curr_time))
+    my_label.config(text = f"{mod_curr_time} / {song_length}")
+    my_label.after(1000, play_time)
+
 
 def slide():
     start_btt =  Label(app, text=f" Starting point :{horizontal_slider.get()}").pack()
@@ -57,6 +74,10 @@ horizontal_slider.pack()
 horizontal_slide2r = Scale(app, from_= 100, to=0, orient=HORIZONTAL)                 
 horizontal_slide2r.pack()
 
+my_label = Label(app, text = '', bd=1, anchor= E)
+my_label.pack(pady =5 )
+
+
 ctrls_frame=Frame(app)
 ctrls_frame.pack()
 
@@ -72,7 +93,7 @@ pause_btt.grid(row =0, column =3, padx=10)
 startIndex = 0
 endIndex = 0
 
-start_btt =Button(ctrls_frame, text = "select starting text", borderwidth = 5, command=slide )
+start_btt =Button(ctrls_frame, text = "select starting text", borderwidth = 5, command= slide )
 
 end_btn =Button(ctrls_frame, text = "select ending point", borderwidth = 5, command = slide2 )
 
