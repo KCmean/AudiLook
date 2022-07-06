@@ -71,7 +71,7 @@ playlist.insert(END, music)
 
 horizontal_slider = Scale(app, from_= 0, to=100, orient=HORIZONTAL)              #slideer
 horizontal_slider.pack()
-horizontal_slide2r = Scale(app, from_= 100, to=0, orient=HORIZONTAL)                 
+horizontal_slide2r = Scale(app, from_= 0, to=100, orient=HORIZONTAL)                 
 horizontal_slide2r.pack()
 
 my_label = Label(app, text = '', bd=1, anchor= E)
@@ -94,7 +94,6 @@ startIndex = 0
 endIndex = 0
 
 start_btt =Button(ctrls_frame, text = "select starting text", borderwidth = 5, command= slide )
-
 end_btn =Button(ctrls_frame, text = "select ending point", borderwidth = 5, command = slide2 )
 
 
