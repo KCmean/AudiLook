@@ -1,4 +1,3 @@
-from cProfile import label
 from tkinter import *
 import tkinter.ttk as ttk
 import pygame
