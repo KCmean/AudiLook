@@ -73,11 +73,6 @@ def play_time():
         nxt_time= horizontal_slider1.get() +1
         horizontal_slider1.config(value= nxt_time)
 
-
-    # my_label.config(text = f"{mod_curr_time} / {song_length}")
-
-    # horizontal_slider1.config(value= Curr_time)
-    # horizontal_slider1.after(1000,play_time)
     my_label.after(1000, play_time)
 
 
@@ -150,17 +145,13 @@ def run(music):
 
     horizontal_slider1 = ttk.Scale(cut, from_= 0, to=100, length= 360, value=0, orient=HORIZONTAL, command = slider)              #slideer
     horizontal_slider1.pack()
-    # horizontal_slide2r = ttk.Scale(cut, from_= 0, to=100, length= 360, orient=HORIZONTAL)                 
-    # horizontal_slide2r.pack()
+
 
     my_label = Label(cut, text = '', bd=1, anchor= E)
     my_label.pack(pady =5 )
 
     ctrls_frame1=Frame(cut)
     ctrls_frame1.pack()
-
-    # play_img= PhotoImage(file= "play1.png")
-    # pause_img= PhotoImage(file = "pause1.png")
 
     play_btt1 = Button(ctrls_frame1, text = 'PLAY', borderwidth = 6, command = play )
     pause_btt1 =Button(ctrls_frame1, text = 'PAUSE' , borderwidth = 6, command = lambda : pause(paused))
@@ -182,9 +173,6 @@ def run(music):
 
     confirm_btt1 = Button(ctrls_frame1, borderwidth = 5 , text="CONFIRM" , width=10 , command=confirmwindow)
     confirm_btt1.grid(row=5 , column=2)
-
-    # quit_btt = Button(ctrls_frame1, text = "QUIT", bd= 5, command = cut.quit )
-    # quit_btt.grid(row= 6, column= 5 , padx=10 )
 
 
     cut.mainloop()
