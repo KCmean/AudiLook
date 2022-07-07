@@ -11,8 +11,8 @@ from tkinter import messagebox
 pygame.mixer.init()
 
 cut = Tk()
-cut.title('Cut')
-cut.geometry('1920x1080')
+cut.title('Audio Cutter')
+cut.geometry('900x600')
 
 def play():                                     #play 
     song = playlist1.get(ACTIVE)
@@ -95,7 +95,7 @@ def slide():
     
     startpt = time.strftime(f'%H:%M:%S', time.gmtime(int(horizontal_slider1.get()-1)))
     # global start_pt
-    start_pt =  Label(cut, text=f" Starting point :{startpt}")
+    start_pt =  Label(cut, text=f" Starting Point :{startpt}")
     start_pt.pack(pady=10)
     start_btt1['state']= DISABLED
 
@@ -108,14 +108,14 @@ def slide2():
         confirm_btt1['state']= DISABLED
         
     elif endIndex-startIndex <1000:
-        messagebox.showerror("Length is too short", "Try again")
+        messagebox.showerror("Length is too short", "Choose a greater length")
         confirm_btt1['state']= DISABLED
     else:
         confirm_btt1['state']= NORMAL
 
     endpt = time.strftime(f'%H:%M:%S', time.gmtime(int(horizontal_slider1.get()-1)))
     # global end_pt
-    end_pt =  Label(cut, text=f" Ending point :{endpt}")
+    end_pt =  Label(cut, text=f" Ending Point :{endpt}")
     end_pt.pack(pady = 10)
     end_btt1['state']= DISABLED
 
@@ -165,28 +165,27 @@ def run(music):
     play_btt1 = Button(ctrls_frame1, text = 'PLAY', borderwidth = 6, command = play )
     pause_btt1 =Button(ctrls_frame1, text = 'PAUSE' , borderwidth = 6, command = lambda : pause(paused))
 
-    play_btt1.grid(row =1, column =1, padx=10) 
-    pause_btt1.grid(row =1, column =3, padx=10) 
+    play_btt1.grid(row =1, column =1, padx=5) 
+    pause_btt1.grid(row =1, column =3, padx=5) 
 
-    start_btt1 =Button(ctrls_frame1, text = "select starting text", borderwidth = 5, command= slide )
-    end_btt1 =Button(ctrls_frame1, text = "select ending point", borderwidth = 5, command = slide2 )
+    start_btt1 =Button(ctrls_frame1, text = "Lock Start Point", borderwidth = 5, command= slide )
+    end_btt1 =Button(ctrls_frame1, text = "Lock End Point", borderwidth = 5, command = slide2 )
     edit_start_btt1 = Button(ctrls_frame1, text = "Edit Starting Point", borderwidth = 5, command= edit_st)
     edit_end_btt1 = Button(ctrls_frame1, text = "Edit Ending Point", borderwidth = 5, command= edit_ed)
 
 
 
-    end_btt1.grid(row =2, column =3, padx=10) 
-    start_btt1.grid(row =2, column =1 ,padx=10) 
-    edit_start_btt1.grid(row = 4, column=1, padx=10)
-    edit_end_btt1.grid(row = 4, column= 3, padx = 10)
+    end_btt1.grid(row =2, column =3, padx=10,pady =10) 
+    start_btt1.grid(row =2, column =1 ,padx=10,pady =10) 
+    edit_start_btt1.grid(row = 4, column=1, padx=10,pady =10)
+    edit_end_btt1.grid(row = 4, column= 3, padx = 10,pady =10)
 
-    confirm_btt1 = Button(ctrls_frame1, borderwidth = 5 , text="confirm" , width=10 , command=confirmwindow)
+    confirm_btt1 = Button(ctrls_frame1, borderwidth = 5 , text="CONFIRM" , width=10 , command=confirmwindow)
     confirm_btt1.grid(row=5 , column=2)
 
-
+    # quit_btt = Button(ctrls_frame1, text = "QUIT", bd= 5, command = cut.quit )
+    # quit_btt.grid(row= 6, column= 5 , padx=10 )
 
 
     cut.mainloop()
-
-    run()
 

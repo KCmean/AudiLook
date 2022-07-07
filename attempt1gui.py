@@ -12,8 +12,8 @@ from pydub import AudioSegment
 
 #setting up
 app = Tk()
-app.title(' Audio Cutter and Merger ')
-app.geometry('700x600')
+app.title(' Audio Player ')
+app.geometry('900x600')
 
 #Heading text
 headingText  =  Label(app , text="MUSIC EDITOR AND PLAYER" ,font="  Times 30 bold",pady=50)
@@ -105,14 +105,18 @@ def play_time():
     my_label.after(1000, play_time)
 
 def cutWindowOpen():    
+        
         import cut
         music = playlist.get(ACTIVE)
         cut.run(music)
 
+def mergeWindowOpen():
+    import merge
+
 
 #adding songs
 def add_song():                               
-    songadd = filedialog.askopenfilename(initialdir="audio/" , title="Choose a somg" , filetypes=(("mp3 files" , "*.mp3"),))
+    songadd = filedialog.askopenfilename(initialdir="audio/" , title="Choose a song" , filetypes=(("mp3 files" , "*.mp3"),))
     songadd = songadd.replace("E:/sem 2/python programming/python ptoject/audio/","")
     songadd = songadd.replace(".mp3","")
     playlist.insert(END,songadd)
@@ -160,7 +164,7 @@ play_btt = Button(ctrls_frame, image= play_img, borderwidth = 0, command = play 
 pause_btt =Button(ctrls_frame, image = pause_img , borderwidth = 0, command = lambda : pause(paused))
 stop_btt = Button(ctrls_frame, image= stop_img ,borderwidth=0, command=stop)
 cutt_btt = Button(ctrls_frame , text="CUT/TRIM AUDIO", borderwidth=5 , command= cutWindowOpen)
-merge_btt = Button(ctrls_frame , text="CUT/TRIM AUDIO", borderwidth=5 , command= cutWindowOpen)
+merge_btt = Button(ctrls_frame , text="MERGE AUDIO", borderwidth=5 , command= mergeWindowOpen)
 
 
 # Placing Buttons
@@ -168,6 +172,7 @@ play_btt.grid(row =0, column =1, padx=10)
 pause_btt.grid(row =0, column =2, padx=10) 
 stop_btt.grid(row =0, column=3, padx= 30)
 cutt_btt.grid(row =1, column = 2, padx= 10,pady=10)
+merge_btt.grid( row =2, column =2 , padx = 10, pady =10)
 
 app.mainloop()
 app.update_idletasks()
