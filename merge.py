@@ -17,9 +17,6 @@ def merge1(slice1, slice2):
     sound2 = AudioSegment.from_mp3(slice2)
 
     merge_1 = sound1+ sound2
-    # L1=Label(merge, text = "Save As", bd = 2 )
-    # ENT = Entry(merge, bd= 5)
-    # ENT.pack(side = RIGHT)
     merge_1.export(f"audio/merge.mp3", format= 'mp3')
     L1= Label(merge, text= "[NOTE : Merged audio saved as MERGED.mp3. \nYou can return to MP3 player to play your audio.]")
     L1.pack(pady = 10)
@@ -28,7 +25,7 @@ def merge1(slice1, slice2):
 #adding songs
 def add_song():                               
     songadd = filedialog.askopenfilename(initialdir="audio/" , title="Choose a song" , filetypes=(("mp3 files" , "*.mp3"),))
-    songadd = songadd.replace("C:/Users/ryzen/Documents/GitHub/Audio-editor/audio/","")
+    songadd = songadd.replace("E:/sem 2/python programming/python ptoject/audio/","")
     songadd = songadd.replace(".mp3","")
     playlist.insert(END,songadd)
 
@@ -62,14 +59,6 @@ def reset():
 
 playlist= Listbox(merge , bg= "black", fg = "green" , selectbackground= "white", selectforeground= "red" , width =60 )
 playlist.pack(pady =30)
-# music= "C:/Users/ryzen/Documents/GitHub/Audio-editor/audio/ 1.mp3"
-# music = music.replace("C:/Users/ryzen/Documents/GitHub/Audio-editor/audio/", "")
-# music = music.replace(".mp3", "")
-# playlist.insert(END, music)
-
-# for i in slices:
-#     ex = merge(i)
-#     ex.export("Merge.mp3", format = 'mp3')
 
 #cretaing list
 my_menu = Menu(merge)
