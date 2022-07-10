@@ -14,10 +14,15 @@ from pydub import AudioSegment
 app = Tk()
 app.title(' Audio Player ')
 app.geometry('900x600')
+app['bg']= 'black'
+
+background = PhotoImage(file = "playerBg.png")
+labelBG = Label(app , image = background)
+labelBG.place(x = 0,y = 0)
 
 #Heading text
-headingText  =  Label(app , text="MUSIC EDITOR AND PLAYER" ,font="  Times 30 bold",pady=50)
-headingText.pack()
+headingText  =  Label(app , text="MUSIC EDITOR AND PLAYER" ,fg = "White" , font="  Times 30 bold", bg = "#09021E" ,pady=20)
+headingText.pack(pady = 30)
 pygame.mixer.init()
 
 #play 
@@ -144,15 +149,16 @@ addsong.add_command(label="Add one song to playlist" , command=add_song)
 
 
 
-my_label = Label(app, text = '', bd=1, anchor= E)
-my_label.pack(pady =5 )
+my_label = Label(app, text = '',fg = "White" , bg = "#09021E", bd=1, anchor= E)
+my_label.pack(pady =1 )
 
 #slider
 horizontal_slider = ttk.Scale(app, from_= 0, to=100, length= 360, value=0, orient=HORIZONTAL, command = slider)             
-horizontal_slider.pack()
+horizontal_slider.pack(pady = 10)
+
 
 ctrls_frame=Frame(app)
-ctrls_frame.pack()
+ctrls_frame.pack(pady = 20)
 
 # play and pause buttonn
 play_img= PhotoImage(file= "play.png")
@@ -163,17 +169,16 @@ stop_img = PhotoImage(file='stop.png')
 play_btt = Button(ctrls_frame, image= play_img, borderwidth = 0, command = play )
 pause_btt =Button(ctrls_frame, image = pause_img , borderwidth = 0, command = lambda : pause(paused))
 stop_btt = Button(ctrls_frame, image= stop_img ,borderwidth=0, command=stop)
-cutt_btt = Button(ctrls_frame , text="CUT/TRIM AUDIO", borderwidth=5 , command= cutWindowOpen)
-merge_btt = Button(ctrls_frame , text="MERGE AUDIO", borderwidth=5 , command= mergeWindowOpen)
+cutt_btt = Button(ctrls_frame , text="CUT/TRIM AUDIO",fg = "White" , bg = "#09021E",  borderwidth=5 , command= cutWindowOpen)
+merge_btt = Button(ctrls_frame , text="MERGE AUDIO",fg = "White" , bg = "#09021E", borderwidth=5 , command= mergeWindowOpen)
 
 
 # Placing Buttons
 play_btt.grid(row =0, column =1, padx=10) 
 pause_btt.grid(row =0, column =2, padx=10) 
-stop_btt.grid(row =0, column=3, padx= 30)
+stop_btt.grid(row =0, column=3, padx= 10)
 cutt_btt.grid(row =1, column = 2, padx= 10,pady=10)
 merge_btt.grid( row =2, column =2 , padx = 10, pady =10)
 
 app.mainloop()
 app.update_idletasks()
-
