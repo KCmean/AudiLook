@@ -11,6 +11,14 @@ from pydub import AudioSegment
 merge = Tk()
 merge.title("Audio Merger")
 merge.geometry('900x600')
+merge['bg']= 'Brown'
+
+# merge_background = ImageTk.PhotoImage(file = "mergeBG.png")
+# merge_labelBG = Label(merge, image= merge_background)
+# merge_labelBG.place(x = 0,y = 0)
+
+merge_headingText  =  Label(merge , text="Audio Cutter" ,fg = "White" , font="  Times 30 bold", bg = "#09021E" ,pady=20)
+merge_headingText.pack(pady = 30)
 
 def merge1(slice1, slice2):
     sound1= AudioSegment.from_mp3(slice1)

@@ -16,8 +16,8 @@ app.title(' Audio Player ')
 app.geometry('900x600')
 app['bg']= 'black'
 
-background = PhotoImage(file = "playerBg.png")
-labelBG = Label(app , image = background)
+player_background = PhotoImage(file = "playerBg.png")
+labelBG = Label(app , image = player_background)
 labelBG.place(x = 0,y = 0)
 
 #Heading text
@@ -177,7 +177,7 @@ merge_btt = Button(ctrls_frame , text="MERGE AUDIO",fg = "White" , bg = "#09021E
 play_btt.grid(row =0, column =1, padx=10) 
 pause_btt.grid(row =0, column =2, padx=10) 
 stop_btt.grid(row =0, column=3, padx= 10)
-cutt_btt.grid(row =1, column = 2, padx= 10,pady=10)
+cutt_btt.grid(row =1, column = 2, padx= 10,pady=4)
 merge_btt.grid( row =2, column =2 , padx = 10, pady =10)
 
 app.mainloop()

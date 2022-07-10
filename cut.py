@@ -5,6 +5,7 @@ from mutagen.mp3 import MP3
 import pygame
 from pydub import AudioSegment
 from tkinter import messagebox
+from PIL import ImageTk,Image
 
 
 
@@ -13,6 +14,14 @@ pygame.mixer.init()
 cut = Tk()
 cut.title('Audio Cutter')
 cut.geometry('900x600')
+cut['bg']= 'Purple'
+
+# cut_background = ImageTk.PhotoImage(file = "cutBG.png")
+# cut_labelBG = Label(cut, image= cut_background)
+# cut_labelBG.place(x = 0,y = 0)
+
+cut_headingText  =  Label(cut , text="Audio Cutter" ,fg = "White" , font="  Times 30 bold", bg = "#09021E" ,pady=20)
+cut_headingText.pack(pady = 30)
 
 def play():                                     #play 
     song = playlist1.get(ACTIVE)
@@ -176,4 +185,5 @@ def run(music):
 
 
     cut.mainloop()
+    cut.update_idletasks()
 
